@@ -62,7 +62,7 @@
     NSString* accountID = [NSString stringWithString:@""];
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     if (standardUserDefaults) {
-        NSString *myString = [standardUserDefaults stringForKey:@"id"];
+        NSString *myString = [standardUserDefaults stringForKey:@"NNUserID"];
         if (myString) {
             accountID = myString;
         }
