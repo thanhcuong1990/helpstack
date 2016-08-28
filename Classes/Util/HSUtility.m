@@ -54,7 +54,7 @@
 
 + (NSString*)deviceInformation
 {
-    NSString* deviceModel = [[UIDevice currentDevice] model];
+    NSString* deviceModel = [DeviceUtil hardwareDevice];
     NSString* osVersion = [[UIDevice currentDevice] systemVersion];
     NSString* bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSString* bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
