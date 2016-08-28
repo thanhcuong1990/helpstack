@@ -37,4 +37,12 @@ Pod::Spec.new do |s|
     ss.source_files = 'Classes/UI/*.{h,m}'
   end
 
+  s.subspec 'DeviceUtil' do |ss|
+    ss.dependency 'HelpStack/Util'
+    ss.dependency 'HelpStack/Core'
+    ss.dependency 'HelpStack/Stacks'
+    ss.dependency 'HelpStack/UI'
+    ss.source_files = 'Classes/DeviceUtil/*.{h,m}'
+  end
+
 end
