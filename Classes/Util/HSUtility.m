@@ -8,6 +8,7 @@
 
 #import "HSUtility.h"
 #import <UIKit/UIKit.h>
+#import "DeviceUtil.h"
 
 @implementation HSUtility
 
