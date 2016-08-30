@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search FAQ" id="YiG-6x-gXr">
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search FAQ" id="YiG-6x-gXr">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -42,6 +42,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cacelButton" destination="e5o-QU-HkM" id="Ky6-oK-uuN"/>
+                        <outlet property="navigateHelpDesk" destination="Oc4-ja-qxi" id="iby-iF-eiQ"/>
+                        <outlet property="searchBar" destination="YiG-6x-gXr" id="sch-Iu-BdD"/>
                         <outlet property="searchDisplayController" destination="gLY-vL-Ubc" id="8Vf-ot-URS"/>
                         <segue destination="Gtj-gW-pLJ" kind="push" identifier="MyIssueDetail" id="8yY-GV-HhP"/>
                     </connections>

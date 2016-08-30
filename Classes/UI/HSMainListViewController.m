@@ -59,11 +59,26 @@
 
 BOOL finishedLoadingKB = NO;
 BOOL finishedLoadingTickets = NO;
+NSString *language = @"";
+NSString *helpLocalize = @"";
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    if ([language isEqualToString:@"pl"]) {
+        self.cacelButton.title = @"Zamknij";
+        self.searchBar.placeholder = @"Szukaj w FAQ";
+        helpLocalize = @"Pomoc";
+        
+    } else {
+        self.searchBar.placeholder = @"Search FAQ";
+        self.cacelButton.title = @"Close";
+        helpLocalize = @"Help";
+    }
+    self.navigateHelpDesk.title = helpLocalize;
     self.kbSource = [HSKBSource createInstance];
     self.ticketSource = [HSTicketSource createInstance];
     
@@ -229,8 +244,11 @@ BOOL finishedLoadingTickets = NO;
             if (cell == nil) {
                 cell = [[HSReportIssueCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReportCellIdentifier];
             }
-            
-            cell.textLabel.text = @"Report an issue";
+            if ([language isEqualToString:@"pl"]) {
+                cell.textLabel.text = @"Zgłoś problem";
+            } else {
+                cell.textLabel.text = @"Report an issue";
+            }
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             
             return cell;
@@ -488,7 +506,7 @@ BOOL finishedLoadingTickets = NO;
         mailer.mailComposeDelegate = self;
         
         [mailer setToRecipients:@[[self.ticketSource supportEmailAddress]]];
-        [mailer setSubject:@"Help"];
+        [mailer setSubject:helpLocalize];
         [mailer setMessageBody:[HSUtility deviceInformation] isHTML:NO];
         
         mailer.modalPresentationStyle = UIModalPresentationCurrentContext;
