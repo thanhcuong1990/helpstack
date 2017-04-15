@@ -28,24 +28,24 @@
 + (NSString*)stringFortimeSinceDateFull:(NSDate*)date
 {
     NSString* timeString;
-    NSTimeInterval secondsSinceUpdate = abs([date timeIntervalSinceNow]);
+    NSTimeInterval secondsSinceUpdate = fabs([date timeIntervalSinceNow]);
     if (secondsSinceUpdate < 60) {
-        int seconds = abs(round(secondsSinceUpdate));
+        int seconds = fabs(round(secondsSinceUpdate));
         NSString* str = (seconds == 1)? @"sec":@"secs";
         timeString = [NSString stringWithFormat:@"%d %@", seconds,str];
 
     }else if (secondsSinceUpdate > 60 && secondsSinceUpdate < 3600){
-        int minutes = abs(round(secondsSinceUpdate/60.0));
+        int minutes = fabs(round(secondsSinceUpdate/60.0));
         NSString* str = (minutes == 1)? @"min":@"mins";
         timeString = [NSString stringWithFormat:@"%d %@", minutes,str];
 
     }else if (secondsSinceUpdate > 3600 && secondsSinceUpdate < 86400){
-        int hours = abs(round(secondsSinceUpdate/3600.0));
+        int hours = fabs(round(secondsSinceUpdate/3600.0));
         NSString* str = (hours == 1)? @"hour":@"hours";
         timeString = [NSString stringWithFormat:@"%d %@", hours,str];
 
     }else{
-        int days = abs(floor(secondsSinceUpdate/86400.0));
+        int days = fabs(floor(secondsSinceUpdate/86400.0));
         NSString* str = (days == 1)? @"day":@"days";
         timeString = [NSString stringWithFormat:@"%d %@", days,str];
     }
@@ -60,7 +60,7 @@
     NSString* bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSString* bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 
-    NSString* accountID = [NSString stringWithString:@""];
+    NSString* accountID = @"";
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     if (standardUserDefaults) {
         NSString *myString = [standardUserDefaults stringForKey:@"NNUserID"];

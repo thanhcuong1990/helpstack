@@ -56,7 +56,7 @@
         [self.webView loadRequest:request];
     }
     else {
-        [self.webView loadData:_attachment.attachmentData MIMEType:_attachment.mimeType textEncodingName:nil baseURL:nil];
+        [self.webView loadData:_attachment.attachmentData MIMEType:_attachment.mimeType textEncodingName:@"" baseURL: [NSURL URLWithString:@""]];
     }
     
     

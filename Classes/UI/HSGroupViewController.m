@@ -70,41 +70,41 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        return 1;
+//    }else{
         return 1;
-    }else{
-        return 1;
-    }
+//    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.kbSource kbCount:HAGearTableTypeSearch];
-    }else{
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        return [self.kbSource kbCount:HAGearTableTypeSearch];
+//    }else{
         return [self.kbSource kbCount:HAGearTableTypeDefault];
-    }
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
-        static NSString* resultCellId = @"Cell";
-        HSTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:resultCellId];
-        if (!cell) {
-            cell = [[HSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:resultCellId];
-        }
-        
-        HSKBItem* article = [self.kbSource table:HAGearTableTypeSearch kbAtPosition:indexPath.row];
-        cell.textLabel.text = article.title;
-        
-        cell.accessoryType = UITableViewCellAccessoryNone;
-
-        return cell;
-
-    }else{
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        
+//        static NSString* resultCellId = @"Cell";
+//        HSTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:resultCellId];
+//        if (!cell) {
+//            cell = [[HSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:resultCellId];
+//        }
+//        
+//        HSKBItem* article = [self.kbSource table:HAGearTableTypeSearch kbAtPosition:indexPath.row];
+//        cell.textLabel.text = article.title;
+//        
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//
+//        return cell;
+//
+//    }else{
         static NSString *CellIdentifier = @"HelpCell";
         HSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -116,19 +116,19 @@
 
         return cell;
 
-    }
+//    }
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self table:HAGearTableTypeSearch articleSelectedAtIndexPath:indexPath.row];
-        
-    }else{
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        [self table:HAGearTableTypeSearch articleSelectedAtIndexPath:indexPath.row];
+//        
+//    }else{
         [self table:HAGearTableTypeDefault articleSelectedAtIndexPath:indexPath.row];
-    }
+//    }
 }
 
 -(void) table:(HAGearTableType)table articleSelectedAtIndexPath:(NSInteger) position {
@@ -150,19 +150,19 @@
     
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterArticlesforSearchString:searchString];
-    return NO;
-}
-
-- (void)filterArticlesforSearchString:(NSString*)string
-{
-    [self.kbSource filterKBforSearchString:string success:^{
-        [self.searchDisplayController.searchResultsTableView reloadData];
-    } failure:^(NSError* e){
-        
-    }];
-}
+//- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self filterArticlesforSearchString:searchString];
+//    return NO;
+//}
+//
+//- (void)filterArticlesforSearchString:(NSString*)string
+//{
+//    [self.kbSource filterKBforSearchString:string success:^{
+//        [self.searchDisplayController.searchResultsTableView reloadData];
+//    } failure:^(NSError* e){
+//        
+//    }];
+//}
 
 @end

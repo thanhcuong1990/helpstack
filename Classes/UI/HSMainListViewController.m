@@ -187,20 +187,20 @@ NSString *helpLocalize = @"";
 {
     // Return the number of sections.
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return 1;
-    }else{
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        return 1;
+//    }else{
         return 2+([self.ticketSource ticketCount]!=0);
-    }
+//    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.kbSource kbCount:HAGearTableTypeSearch];
-    }else{
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        return [self.kbSource kbCount:HAGearTableTypeSearch];
+//    }else{
         if (section == 0) {
             return [self.kbSource kbCount:HAGearTableTypeDefault];
         }
@@ -214,29 +214,29 @@ NSString *helpLocalize = @"";
         else {
             return 1;
         }
-    }
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
-        static NSString *CellIdentifier = @"Cell";
-        
-        HSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[HSTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
-        
-        HSKBItem* article = [self.kbSource table:HAGearTableTypeSearch kbAtPosition:indexPath.row];
-        cell.textLabel.text = article.title;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        
-        return cell;
-        
-    } else {
-        
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        
+//        static NSString *CellIdentifier = @"Cell";
+//        
+//        HSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (cell == nil) {
+//            cell = [[HSTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        }
+//        
+//        HSKBItem* article = [self.kbSource table:HAGearTableTypeSearch kbAtPosition:indexPath.row];
+//        cell.textLabel.text = article.title;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+//        
+//        return cell;
+//        
+//    } else {
+    
         static NSString *CellIdentifier = @"HelpCell";
         static NSString *ReportCellIdentifier = @"RepostIssueCell";
         if (indexPath.section == 2 || (indexPath.section == 1 && ([self.ticketSource ticketCount] == 0))) {
@@ -274,7 +274,7 @@ NSString *helpLocalize = @"";
             return cell;
         }
         return nil;
-    }
+//    }
     
 }
 
@@ -289,10 +289,10 @@ NSString *helpLocalize = @"";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self table:HAGearTableTypeSearch articleSelectedAtIndexPath:indexPath.row];
-        
-    } else {
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        [self table:HAGearTableTypeSearch articleSelectedAtIndexPath:indexPath.row];
+//        
+//    } else {
         if (indexPath.section == 0) {
             [self table:HAGearTableTypeDefault articleSelectedAtIndexPath:indexPath.row];
         } else if(indexPath.section == 1){
@@ -305,7 +305,7 @@ NSString *helpLocalize = @"";
         } else {
             [self reportIssue];
         }
-    }
+//    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -316,18 +316,18 @@ NSString *helpLocalize = @"";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return 0.0;
-    }
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        return 0.0;
+//    }
 
     return 30.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return nil;
-    }
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        return nil;
+//    }
 
 
     HSTableViewHeaderCell* cell = nil;
@@ -420,13 +420,13 @@ NSString *helpLocalize = @"";
     [newTicketNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+- (BOOL)searchDisplayController:(UISearchController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterArticlesforSearchString:searchString];
     return NO;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
+- (void)searchDisplayController:(UISearchController *)controller didShowSearchResultsTableView:(UITableView *)tableView
 {
     UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 100)];
 
@@ -443,14 +443,14 @@ NSString *helpLocalize = @"";
 
 - (void)reportIssueFromSearch {
     //dismiss search
-    [self.searchDisplayController setActive:NO animated:NO];
+//    [self.searchDisplayController setActive:NO animated:NO];
     [self reportIssue];
 }
 
 - (void)filterArticlesforSearchString:(NSString*)string
 {
     [self.kbSource filterKBforSearchString:string success:^{
-        [self.searchDisplayController.searchResultsTableView reloadData];
+//        [self.searchDisplayController.searchResultsTableView reloadData];
     } failure:^(NSError* e){
         
     }];
